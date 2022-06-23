@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Post, User, Vote, Comment } = require('../../models');
 const sequelize = require('../../config/connection');
 
-// get all users
+// get all posts
 router.get('/', (req, res) => {
     console.log('===================');
     Post.findAll({
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
             {
                 model: Comment,
                 attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-                Include: {
+                include: {
                     model: User,
                     attributes: ['username']
                 }
@@ -53,7 +53,7 @@ router.get('/:id', (req, res) => {
             {
                 model: Comment,
                 attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-                Include: {
+                include: {
                     model: User,
                     attributes: ['username']
                 }
