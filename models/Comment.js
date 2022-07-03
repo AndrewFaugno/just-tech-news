@@ -7,6 +7,7 @@ Comment.init(
     {
         id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
@@ -15,12 +16,11 @@ Comment.init(
             allowNull: false,
             validate: {
                 // comment must be at least 1 char
-                len: [4]
+                len: [1]
             }
         },
         user_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             references: {
                 model: 'user',
                 key: 'id'
@@ -28,7 +28,6 @@ Comment.init(
         },
         post_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             references: {
                 model: 'post',
                 key: 'id'
